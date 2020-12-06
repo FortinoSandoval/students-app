@@ -21,7 +21,7 @@ const StudentDetails = ({ student }: { student: Student }) => (
   </Paper>
 );
 
-const StudentDetailsPage = (props: any) => {
+const StudentDetailsPage = (props: StudentDetailsPageProps) => {
   const history = useHistory();
 
   const [student, setStudent] = useState<Student>();
@@ -40,8 +40,6 @@ const StudentDetailsPage = (props: any) => {
     });
   };
 
-
-  // @ts-ignore
   return (
     <div id="studentDetailsPage">
       <NavbarComponent/>
@@ -55,5 +53,13 @@ const StudentDetailsPage = (props: any) => {
     </div>
   );
 };
+
+type StudentDetailsPageProps = {
+  match: {
+    params: {
+      id: number
+    }
+  }
+}
 
 export default StudentDetailsPage;

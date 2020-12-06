@@ -15,7 +15,7 @@ import { Student } from 'shared/interfaces';
 const StudentsPage = () => {
   const history = useHistory();
 
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState<Student[]>([]);
   const [newStudentDialogOpen, setNewStudentDialogOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -47,7 +47,7 @@ const StudentsPage = () => {
         },
         phoneNumber: student.phoneNumber,
         GPA: student.GPA
-      }
+      };
       return StudentsService.createStudent(studentDTO).then(() => {
         handleNewStudentDialogClose();
         getStudents();
@@ -67,7 +67,6 @@ const StudentsPage = () => {
 
   const getStudents = () => {
     StudentsService.getStudents().then((savedStudents: Student[]) => {
-      // @ts-ignore
       return setStudents(savedStudents);
     })
   };
